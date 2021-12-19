@@ -1,2 +1,25 @@
-%h1 Users#index
-%p Find me in app/views/users/index.html.haml
+.container
+  .row
+    %h2 ユーザー一覧
+  - @users.each do |user|
+    #wallmessages.qa-message-list
+      #m16.message-item
+        .message-inner
+          .message-head.clearfix
+            .avatar.pull-left
+              %a{:href => "./index.php?qa=user&qa_1=Oleg+Kolesnichenko"}
+                %img{:src => "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"}/
+            .user-detail
+              %h5.handle= user.name
+              .post-meta
+                .asker-meta
+                  %span.qa-message-what
+                  %span.qa-message-when
+                    %span.qa-message-when-data Jan 21
+                  %span.qa-message-who
+                    %span.qa-message-who-pad by
+                    %span.qa-message-who-data
+                      %a{:href => "./index.php?qa=user&qa_1=Oleg+Kolesnichenko"} Oleg Kolesnichenko
+          .qa-message-content
+            Yo!
+    
