@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_28_143207) do
+ActiveRecord::Schema.define(version: 2021_12_31_145922) do
+
+  create_table "hobby_rooms", force: :cascade do |t|
+    t.string "genre"
+    t.string "title"
+    t.text "description"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_hobby_rooms_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -21,4 +31,5 @@ ActiveRecord::Schema.define(version: 2021_12_28_143207) do
     t.text "bio"
   end
 
+  add_foreign_key "hobby_rooms", "users"
 end
