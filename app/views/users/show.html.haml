@@ -1,2 +1,4 @@
-%h1 Users#show
-%p Find me in app/views/users/show.html.haml
+%h1 マイページ
+%p= @user.name
+%p= @user.bio
+= link_to "編集", edit_user_path(@user.id), class: "btn btn-primary"
