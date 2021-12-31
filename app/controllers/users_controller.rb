@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMilerMailer.with(to: @user.email, name: @user.name).welcome.deliver_now
+      log_in @user
       redirect_to @user
     else 
       render 'new'
