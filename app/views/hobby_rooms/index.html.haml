@@ -14,4 +14,9 @@
         = f.label :description, class: "form-label"
         = f.text_field :description, class: "form-control"
       %br
+      = f.hidden_field :user_id, :value => current_user.id
       = f.submit "趣味会話ルーム作成", class: "btn btn-primary"
+    %hr
+    %br
+    
+
