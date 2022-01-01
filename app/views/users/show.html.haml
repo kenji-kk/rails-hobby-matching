@@ -2,3 +2,6 @@
 %p= @user.name
 %p= @user.bio
 = link_to "編集", edit_user_path(@user.id), class: "btn btn-primary"
+- if session[:user_id] 
+  %p ログインしています
+  = link_to "ログアウト", logout_path, class: "btn btn-primary", method: :delete
