@@ -18,5 +18,12 @@
       = f.submit "趣味会話ルーム作成", class: "btn btn-primary"
     %hr
     %br
-    
-
+    - @hobby_rooms.each do |hobby_room|
+      %p= "ジャンル：#{hobby_room.genre}"
+      %p= "タイトル#{hobby_room.title}"
+      %p= "説明：#{hobby_room.description}"
+      %p= "作成日時：#{hobby_room.created_at}"
+      %p= "作成者：#{hobby_room.user.name}"
+      %hr
+      %br
+      

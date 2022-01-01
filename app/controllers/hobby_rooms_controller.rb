@@ -8,8 +8,9 @@ class HobbyRoomsController < ApplicationController
   def create
     @hobby_room = HobbyRoom.new(hobby_room_params)
     if @hobby_room.save
-      redirect_to hobby_rooms_index_path
+      redirect_to hobby_rooms_path
     else
+      @hobby_rooms = HobbyRoom.all
       render 'index'
     end
   end
