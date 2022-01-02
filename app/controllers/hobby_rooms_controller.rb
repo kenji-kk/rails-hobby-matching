@@ -15,6 +15,10 @@ class HobbyRoomsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
 
 
   private
