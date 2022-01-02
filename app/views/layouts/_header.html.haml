@@ -1,0 +1,12 @@
+%header.navbar.navbar-fixed-top.navbar-inverse
+  .container
+    = link_to "sample app", '#', id: "logo"
+    %nav
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to "趣味会話ルーム一覧", hobby_rooms_path
+        %li= link_to "ユーザ一覧", users_path
+        %li= link_to "マイページ", current_user
+        %li= link_to "ログアウト", logout_path, method: :delete
+%br
+%br
+%br
