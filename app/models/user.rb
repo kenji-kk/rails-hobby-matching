@@ -2,6 +2,9 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   has_secure_password
   has_many :hobby_rooms
+  has_many :hobby_room_users
+  has_many :join_rooms, through: :hobby_room_users, source: :hobby_room
+
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)

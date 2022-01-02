@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_02_032212) do
+ActiveRecord::Schema.define(version: 2022_01_02_114820) do
+
+  create_table "hobby_room_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "hobby_room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hobby_room_id"], name: "index_hobby_room_users_on_hobby_room_id"
+    t.index ["user_id"], name: "index_hobby_room_users_on_user_id"
+  end
 
   create_table "hobby_rooms", force: :cascade do |t|
     t.string "genre"
@@ -32,5 +41,7 @@ ActiveRecord::Schema.define(version: 2022_01_02_032212) do
     t.string "remember_digest"
   end
 
+  add_foreign_key "hobby_room_users", "hobby_rooms"
+  add_foreign_key "hobby_room_users", "users"
   add_foreign_key "hobby_rooms", "users"
 end
