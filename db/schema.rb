@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_31_145922) do
+ActiveRecord::Schema.define(version: 2022_01_02_032212) do
 
   create_table "hobby_rooms", force: :cascade do |t|
     t.string "genre"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_12_31_145922) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.text "bio"
+    t.string "remember_digest"
   end
 
   add_foreign_key "hobby_rooms", "users"
