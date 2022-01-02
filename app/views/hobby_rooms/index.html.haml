@@ -25,6 +25,7 @@
       %p= "説明：#{hobby_room.description}"
       %p= "作成日時：#{hobby_room.created_at}"
       %p= "作成者：#{hobby_room.user.name}"
+      = link_to "詳細", hobby_room, class: "btn btn-primary"
       %hr
       %br
       
