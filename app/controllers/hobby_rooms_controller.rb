@@ -16,7 +16,8 @@ class HobbyRoomsController < ApplicationController
   end
 
   def show
-
+    @hobby_room = HobbyRoom.find(params[:id])
+    @users = @hobby_room.exist_users
   end
 
 

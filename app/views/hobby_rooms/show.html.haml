@@ -1,1 +1,6 @@
-%p showページです
+%h1= "#{@hobby_room.title}について話し合いましょう！"
+%hr
+- @users.each do |user|
+  %p= "参加ユーザ：#{user.name}"
+  %br
+  %hr
