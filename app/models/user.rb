@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
   has_secure_password
+  has_many :hobby_rooms
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
