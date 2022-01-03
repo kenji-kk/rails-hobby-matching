@@ -11,16 +11,13 @@
               %a{:href => "./index.php?qa=user&qa_1=Oleg+Kolesnichenko"}
                 %img{:src => "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"}/
             .user-detail
-              %h5.handle= user.name
+              %h5.handle= "ユーザ名：#{user.name}"
               .post-meta
                 .asker-meta
                   %span.qa-message-what
                   %span.qa-message-when
-                    %span.qa-message-when-data Jan 21
+                    %span.qa-message-when-data 
                   %span.qa-message-who
-                    %span.qa-message-who-pad by
-                    %span.qa-message-who-data
-                      %a{:href => "./index.php?qa=user&qa_1=Oleg+Kolesnichenko"} Oleg Kolesnichenko
+                    %span.qa-message-who-pad 
           .qa-message-content
-            Yo!
-    
+            %p= user.bio

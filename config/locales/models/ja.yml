@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      hobby_room: 趣味ルーム
+    attributes:
+      user:
+        id: ID
+        name: ユーザ名
+        email: メールアドレス
+        created_at: 作成日時
+        updated_at: 更新日時
+        bio: 自己紹介
+        password: パスワード
+      hobby_room:
+        id: ID
+        genre: ジャンル
+        title: タイトル
+        description: 説明
+        created_at: 作成日時
+        updated_at: 更新日時
