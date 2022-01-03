@@ -27,6 +27,11 @@ class HobbyRoomsController < ApplicationController
     redirect_to @hobby_room 
   end
 
+  def withdrawal
+    @hobby_room = HobbyRoom.find(params[:room][:room_id])
+    @hobby_room.hobby_room_users.find_by(user_id: current_user.id).destroy
+    redirect_to @hobby_room 
+  end
 
   private
 
