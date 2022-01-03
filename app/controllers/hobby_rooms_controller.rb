@@ -21,6 +21,11 @@ class HobbyRoomsController < ApplicationController
     @users = @hobby_room.exist_users
   end
 
+  def join
+    @hobby_room = HobbyRoom.find(params[:room][:room_id])
+    @hobby_room.exist_users << current_user
+    redirect_to @hobby_room 
+  end
 
 
   private

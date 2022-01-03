@@ -1,4 +1,7 @@
 %h1= "#{@hobby_room.title}について話し合いましょう！"
+= form_with url: hobby_rooms_join_path, scope: :room, local: true do |f|
+  = f.hidden_field :room_id, :value => @hobby_room.id
+  = f.submit "ルームに参加", class: "btn btn-primary"
 %hr
 - @users.each do |user|
   %p= "参加ユーザ：#{user.name}"
