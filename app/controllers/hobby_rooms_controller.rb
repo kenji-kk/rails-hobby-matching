@@ -35,6 +35,7 @@ class HobbyRoomsController < ApplicationController
 
   def chat_group
     @hobby_room = HobbyRoom.find(params[:id])
+    @chats = @hobby_room.group_chats
   end
 
   private
