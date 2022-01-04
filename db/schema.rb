@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_02_114820) do
+ActiveRecord::Schema.define(version: 2022_01_04_114736) do
+
+  create_table "group_chats", force: :cascade do |t|
+    t.integer "hobby_room_id", null: false
+    t.string "name"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hobby_room_id"], name: "index_group_chats_on_hobby_room_id"
+  end
 
   create_table "hobby_room_users", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -41,6 +50,7 @@ ActiveRecord::Schema.define(version: 2022_01_02_114820) do
     t.string "remember_digest"
   end
 
+  add_foreign_key "group_chats", "hobby_rooms"
   add_foreign_key "hobby_room_users", "hobby_rooms"
   add_foreign_key "hobby_room_users", "users"
   add_foreign_key "hobby_rooms", "users"

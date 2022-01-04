@@ -3,9 +3,11 @@
   %div.col-md-6.col-md-offset-3
     %h1= "#{@hobby_room.title}について話し合いましょう！"
     - if current_user.join_rooms.include?(@hobby_room)
+      = link_to "チャットルーム", "/hobby_rooms/chat/#{@hobby_room.id}", class: "btn btn-primary"
       = form_with url: hobby_rooms_withdrawal_path, scope: :room, local: true do |f|
+        %br
         = f.hidden_field :room_id, :value => @hobby_room.id
-        = f.submit "ルームから退会", class: "btn btn-primary"
+        = f.submit "ルームから退会", class: "btn btn-danger"
     - else 
       = form_with url: hobby_rooms_join_path, scope: :room, local: true do |f|
         = f.hidden_field :room_id, :value => @hobby_room.id

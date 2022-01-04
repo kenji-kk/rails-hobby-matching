@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/group_chats', to: 'group_chats#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -7,5 +8,6 @@ Rails.application.routes.draw do
   get '/hobby_rooms/:id', to: 'hobby_rooms#show', as: 'hobby_room'
   post '/hobby_rooms/join', to: 'hobby_rooms#join'
   post '/hobby_rooms/withdrawal', to: 'hobby_rooms#withdrawal'
+  get '/hobby_rooms/chat/:id', to: 'hobby_rooms#chat_group'
   resources :users
 end

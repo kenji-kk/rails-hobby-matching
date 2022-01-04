@@ -24,13 +24,19 @@ class HobbyRoomsController < ApplicationController
   def join
     @hobby_room = HobbyRoom.find(params[:room][:room_id])
     @hobby_room.exist_users << current_user
-    redirect_to @hobby_room 
+    redirect_to "/hobby_rooms/chat/#{@hobby_room.id}"
   end
 
   def withdrawal
     @hobby_room = HobbyRoom.find(params[:room][:room_id])
     @hobby_room.hobby_room_users.find_by(user_id: current_user.id).destroy
     redirect_to @hobby_room 
+  end
+
+  def chat_group
+    @group_chat = GroupChat.new
+    @hobby_room = HobbyRoom.find(params[:id])
+    @chats = @hobby_room.group_chats
   end
 
   private

@@ -1,0 +1,21 @@
+= render 'layouts/header'
+%div.row
+  %div.col-md-6.col-md-offset-3
+    %h1 グループチャットルーム
+    = form_with model: @group_chat, local: true do |f|
+      = f.label :content, class: "form-label"
+      = f.text_field :content, class: "form-control" 
+      = f.hidden_field :name, :value => current_user.name
+      = f.hidden_field :hobby_room_id, :value => @hobby_room.id
+      %br
+      = f.submit "送信", class: "btn btn-primary"
+    %br
+    %hr
+    = link_to "参加者一覧", @hobby_room, class: "btn btn-warning"
+    %br
+    %hr
+    - @chats.each do |chat|
+      %p= "#{chat.name}　　=>　　#{chat.content}"
+      %p= chat.created_at
+      %br
+      %hr
