@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'group_chats/show'
+  post '/group_chats', to: 'group_chats#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
