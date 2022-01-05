@@ -19,10 +19,17 @@
       %p= chat.created_at.strftime("%Y-%m-%d %H:%M:%S")
       %details
         %summary.btn.btn-default リプライを見る
-        = form_with url: 'group_chats/reply', local: true do |f|
+        %br
+        %hr
+        - chat.replys.each do |reply|
+          %p= "#{reply.name}　:　#{reply.content }"
+          %hr
+        = form_with url: "/group_chats/reply/#{@hobby_room.id}", scope: :reply ,local: true do |f|
           %br
           = f.text_field :content, class: "form-control"
           %br
+          = f.hidden_field :group_chat_id, :value => chat.id 
+          = f.hidden_field :name, :value => @current_user.name 
           = f.submit "送信" ,class: "btn btn-primary"
       %br
       %hr
