@@ -8,6 +8,10 @@ class GroupChatsController < ApplicationController
     end
   end
 
+  def reply
+    
+  end
+
   private
     def group_chat_params
       params.require(:group_chat).permit(:content, :name, :hobby_room_id)

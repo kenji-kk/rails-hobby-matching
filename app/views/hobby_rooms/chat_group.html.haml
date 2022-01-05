@@ -16,6 +16,13 @@
     %hr
     - @chats.each do |chat|
       %p= "#{chat.name}　　=>　　#{chat.content}"
-      %p= chat.created_at
+      %p= chat.created_at.strftime("%Y-%m-%d %H:%M:%S")
+      %details
+        %summary.btn.btn-default リプライを見る
+        = form_with url: 'group_chats/reply', local: true do |f|
+          %br
+          = f.text_field :content, class: "form-control"
+          %br
+          = f.submit "送信" ,class: "btn btn-primary"
       %br
       %hr
