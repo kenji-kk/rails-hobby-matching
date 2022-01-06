@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'sessions#new'
   post '/group_chats/reply/:id', to: 'group_chats#create_reply'
   post '/group_chats', to: 'group_chats#create_chat'
   get '/login', to: 'sessions#new'
