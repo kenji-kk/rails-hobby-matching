@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       UserMilerMailer.with(to: @user.email, name: @user.name).welcome.deliver_now
       log_in @user
+      flash[:success] = "アカウント作成に成功しました。"
       redirect_to @user
     else 
       render 'new'
