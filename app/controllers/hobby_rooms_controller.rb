@@ -25,6 +25,7 @@ class HobbyRoomsController < ApplicationController
   def join
     @hobby_room = HobbyRoom.find(params[:room][:room_id])
     @hobby_room.exist_users << current_user
+    flash[:success] = "『#{@hobby_room.title}』の部屋に参加しました。" 
     redirect_to "/hobby_rooms/chat/#{@hobby_room.id}"
   end
 
