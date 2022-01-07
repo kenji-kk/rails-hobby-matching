@@ -2,6 +2,7 @@ class GroupChatsController < ApplicationController
   def create_chat
     @group_chat = GroupChat.new(group_chat_params)
     if @group_chat.save
+      flash[:success] = "チャットを投稿しました。"
       redirect_to "/hobby_rooms/chat/#{@group_chat.hobby_room.id}"
     else
       @hobby_room = HobbyRoom.find(@group_chat.hobby_room.id)
