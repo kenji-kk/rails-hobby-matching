@@ -4,6 +4,8 @@ class GroupChatsController < ApplicationController
     if @group_chat.save
       redirect_to "/hobby_rooms/chat/#{@group_chat.hobby_room.id}"
     else
+      @hobby_room = HobbyRoom.find(@group_chat.hobby_room.id)
+      @chats = @hobby_room.group_chats
       render 'hobby_rooms/chat_group'
     end
   end
