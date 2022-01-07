@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       UserMilerMailer.with(to: @user.email, name: @user.name).welcome.deliver_now
       log_in @user
+      flash[:success] = "アカウント作成に成功しました。"
       redirect_to @user
     else 
       render 'new'
@@ -29,6 +30,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:success] = "ユーザ情報を更新しました。"
       redirect_to user_path(@user.id)
     else
       render 'edit'
@@ -39,6 +41,6 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_cofirmation, :bio)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :bio)
     end
 end

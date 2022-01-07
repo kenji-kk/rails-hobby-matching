@@ -9,6 +9,7 @@ class HobbyRoomsController < ApplicationController
     @hobby_room = HobbyRoom.new(hobby_room_params)
     if @hobby_room.save
       @hobby_room.exist_users << current_user
+      flash[:success] = "趣味会話ルームの作成に成功しました。"
       redirect_to hobby_rooms_path
     else
       @hobby_rooms = HobbyRoom.all
@@ -24,12 +25,14 @@ class HobbyRoomsController < ApplicationController
   def join
     @hobby_room = HobbyRoom.find(params[:room][:room_id])
     @hobby_room.exist_users << current_user
+    flash[:success] = "『#{@hobby_room.title}』の部屋に参加しました。" 
     redirect_to "/hobby_rooms/chat/#{@hobby_room.id}"
   end
 
   def withdrawal
     @hobby_room = HobbyRoom.find(params[:room][:room_id])
     @hobby_room.hobby_room_users.find_by(user_id: current_user.id).destroy
+    flash[:success] = "『#{@hobby_room.title}』の部屋から退会しました。"
     redirect_to @hobby_room 
   end
 

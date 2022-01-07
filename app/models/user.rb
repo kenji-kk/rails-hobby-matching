@@ -1,9 +1,17 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
-  has_secure_password
   has_many :hobby_rooms
   has_many :hobby_room_users
   has_many :join_rooms, through: :hobby_room_users, source: :hobby_room
+  before_save   :downcase_email
+  validates :name, presence: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: {with: VALID_EMAIL_REGEX},
+                    uniqueness: true
+  has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :bio, length: { maximum: 1000 }
 
 
   # 渡された文字列のハッシュ値を返す
@@ -34,4 +42,11 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  private
+    # メールアドレスをすべて小文字にする
+    def downcase_email
+      self.email = email.downcase
+    end
+
 end
