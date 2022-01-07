@@ -32,6 +32,7 @@ class HobbyRoomsController < ApplicationController
   def withdrawal
     @hobby_room = HobbyRoom.find(params[:room][:room_id])
     @hobby_room.hobby_room_users.find_by(user_id: current_user.id).destroy
+    flash[:success] = "『#{@hobby_room.title}』の部屋から退会しました。"
     redirect_to @hobby_room 
   end
 
