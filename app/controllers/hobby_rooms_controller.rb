@@ -9,6 +9,7 @@ class HobbyRoomsController < ApplicationController
     @hobby_room = HobbyRoom.new(hobby_room_params)
     if @hobby_room.save
       @hobby_room.exist_users << current_user
+      flash[:success] = "趣味会話ルームの作成に成功しました。"
       redirect_to hobby_rooms_path
     else
       @hobby_rooms = HobbyRoom.all
