@@ -15,6 +15,7 @@
     = link_to "参加者一覧", @hobby_room, class: "btn btn-warning"
     %br
     %hr
+    = render 'shared/flash'
     - @chats.each do |chat|
       %p= "#{chat.name}　　=>　　#{chat.content}"
       %p= chat.created_at.strftime("%Y-%m-%d %H:%M:%S")
@@ -26,7 +27,6 @@
           %p= "#{reply.name}　:　#{reply.content }"
           %hr
         = form_with url: "/group_chats/reply/#{@hobby_room.id}", scope: :reply ,local: true do |f|
-          = render 'shared/flash'
           %br
           = f.text_field :content, class: "form-control"
           %br
