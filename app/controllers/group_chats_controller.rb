@@ -15,6 +15,10 @@ class GroupChatsController < ApplicationController
     if @reply.save
       redirect_to "/hobby_rooms/chat/#{params[:id]}"
     else
+      flash[:danger] = "入力値に誤りがあります。（空欄、201文字以上不可）"
+      @group_chat = GroupChat.new
+      @hobby_room = HobbyRoom.find(params[:id])
+      @chats = @hobby_room.group_chats
       render 'hobby_rooms/chat_group'
     end
   end

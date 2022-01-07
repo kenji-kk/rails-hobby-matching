@@ -26,6 +26,7 @@
           %p= "#{reply.name}　:　#{reply.content }"
           %hr
         = form_with url: "/group_chats/reply/#{@hobby_room.id}", scope: :reply ,local: true do |f|
+          = render 'shared/flash'
           %br
           = f.text_field :content, class: "form-control"
           %br
