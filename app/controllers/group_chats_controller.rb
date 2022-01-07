@@ -14,6 +14,7 @@ class GroupChatsController < ApplicationController
   def create_reply
     @reply = Reply.new(reply_params)
     if @reply.save
+      flash[:success] = "リプライの投稿を投稿しました。"
       redirect_to "/hobby_rooms/chat/#{params[:id]}"
     else
       flash.now[:danger] = "リプライの入力値に誤りがありました。（空欄、201文字以上不可）"
