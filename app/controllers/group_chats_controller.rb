@@ -1,4 +1,6 @@
 class GroupChatsController < ApplicationController
+  before_action :logged_in_user
+
   def create_chat
     @group_chat = GroupChat.new(group_chat_params)
     if @group_chat.save
