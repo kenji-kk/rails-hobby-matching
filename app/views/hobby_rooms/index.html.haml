@@ -23,7 +23,7 @@
     %br
     - @hobby_rooms.each do |hobby_room|
       %p= "ジャンル：#{hobby_room.genre}"
-      %p= "タイトル#{hobby_room.title}"
+      %p= "タイトル：#{hobby_room.title}"
       %p= "説明：#{hobby_room.description}"
       %p= "作成日時：#{hobby_room.created_at.strftime("%Y-%m-%d %H:%M:%S")}"
       %p= "作成者：#{hobby_room.user.name}"

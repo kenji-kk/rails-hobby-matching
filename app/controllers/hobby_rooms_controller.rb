@@ -3,7 +3,7 @@ class HobbyRoomsController < ApplicationController
 
   def index
     @hobby_room = HobbyRoom.new
-    @hobby_rooms = HobbyRoom.all
+    @hobby_rooms = HobbyRoom.all.order(created_at: "DESC")
   end
 
   def create
