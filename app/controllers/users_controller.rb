@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, except: [:new]
 
   def index
-    @users = User.all
+    @users = User.all.order(created_at: "DESC")
   end
 
   def show
