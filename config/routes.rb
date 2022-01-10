@@ -11,5 +11,10 @@ Rails.application.routes.draw do
   post '/hobby_rooms/join', to: 'hobby_rooms#join'
   post '/hobby_rooms/withdrawal', to: 'hobby_rooms#withdrawal'
   get '/hobby_rooms/chat/:id', to: 'hobby_rooms#chat_group'
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
 end

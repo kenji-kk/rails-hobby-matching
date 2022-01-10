@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, except: [:new]
+  before_action :correct_user,   only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.all.order(created_at: "DESC")
   end
 
   def show
@@ -39,10 +40,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
+  end
+
 
   private
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :bio)
+    end
+
+    # 正しいユーザーかどうか確認
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
     end
 end
