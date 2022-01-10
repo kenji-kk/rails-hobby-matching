@@ -12,6 +12,7 @@
                 %img{:src => "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"}/
             .user-detail
               %h5.handle= "ユーザ名：#{user.name}"
+              =link_to "詳細", user
               .post-meta
                 .asker-meta
                   %span.qa-message-what
