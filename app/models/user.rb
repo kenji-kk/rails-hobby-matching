@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :hobby_rooms
   has_many :hobby_room_users
   has_many :join_rooms, through: :hobby_room_users, source: :hobby_room
-  has_many :active_relationships, class_name: "Relatinship",
+  has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
                                   dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
