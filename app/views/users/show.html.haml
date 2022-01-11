@@ -16,4 +16,8 @@
     %hr
     - @user.hobby_rooms.each do |hobby_room|
       %li= hobby_room.title
-    
+    %br
+    %h3 ↓参加している部屋
+    %hr
+    - @user.join_rooms.each do |hobby_room|
+      %li= hobby_room.title 
