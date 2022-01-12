@@ -112,4 +112,7 @@ Rails.application.configure do
 
   #herokuデプロイ
   config.assets.js_compressor = Uglifier.new(harmony: true)
+
+  #メール設定
+  config.action_mailer.delivery_method = :file
 end
