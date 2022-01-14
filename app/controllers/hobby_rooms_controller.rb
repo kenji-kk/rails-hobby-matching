@@ -3,7 +3,11 @@ class HobbyRoomsController < ApplicationController
 
   def index
     @hobby_room = HobbyRoom.new
-    @hobby_rooms = HobbyRoom.all.order(created_at: "DESC")
+    if params[:search] && params[:search][:genre]
+      @hobby_rooms = HobbyRoom.search(params[:search][:genre])
+    else
+      @hobby_rooms = HobbyRoom.all.order(created_at: "DESC")
+    end
   end
 
   def create
