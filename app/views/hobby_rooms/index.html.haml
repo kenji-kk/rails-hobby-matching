@@ -21,6 +21,13 @@
       = f.submit "趣味会話ルーム作成", class: "btn btn-primary"
     %hr
     %br
+    = form_with url: hobby_rooms_path, method: :get, scope: :search, local: true do |f|
+      = f.label :genre, "ジャンルで部屋を絞り込む"
+      = f.text_field :genre, class: 'form-control'
+      %br
+      = f.submit "探索", class: 'btn btn-primary'
+    %hr
+    %br
     - @hobby_rooms.each do |hobby_room|
       %p= "ジャンル：#{hobby_room.genre}"
       %p= "タイトル：#{hobby_room.title}"
