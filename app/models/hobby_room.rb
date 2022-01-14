@@ -9,5 +9,5 @@ class HobbyRoom < ApplicationRecord
 
   def self.search(search)
     where(['genre LIKE ?', "%#{search}%"])
-  
+  end
 end
