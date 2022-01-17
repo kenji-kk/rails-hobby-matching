@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_125136) do
+ActiveRecord::Schema.define(version: 2022_01_17_130625) do
 
   create_table "group_chats", force: :cascade do |t|
     t.integer "hobby_room_id", null: false
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 2022_01_10_125136) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_hobby_rooms_on_user_id"
+  end
+
+  create_table "like_rooms", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "hobby_room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hobby_room_id"], name: "index_like_rooms_on_hobby_room_id"
+    t.index ["user_id"], name: "index_like_rooms_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -70,5 +79,7 @@ ActiveRecord::Schema.define(version: 2022_01_10_125136) do
   add_foreign_key "hobby_room_users", "hobby_rooms"
   add_foreign_key "hobby_room_users", "users"
   add_foreign_key "hobby_rooms", "users"
+  add_foreign_key "like_rooms", "hobby_rooms"
+  add_foreign_key "like_rooms", "users"
   add_foreign_key "replies", "group_chats"
 end
