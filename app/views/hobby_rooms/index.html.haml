@@ -38,7 +38,7 @@
         = link_to "詳細", hobby_room, class: "btn btn-primary"
         = form_with( url: like_rooms_path, local: true ) do |f| 
           = f.hidden_field :room_id, value: hobby_room.id
-          = f.submit "いいね！#{hobby_room.like_room.count}", class: "btn btn-default"
+          = f.submit "いいね！#{hobby_room.like_rooms.count}", class: "btn btn-default"
       %hr
       %br
       
