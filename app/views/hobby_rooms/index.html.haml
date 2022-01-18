@@ -34,7 +34,15 @@
       %p= "説明：#{hobby_room.description}"
       %p= "作成日時：#{hobby_room.created_at.strftime("%Y-%m-%d %H:%M:%S")}"
       %p= "作成者：#{hobby_room.user.name}"
-      = link_to "詳細", hobby_room, class: "btn btn-primary"
+      .d-flex.flex-row 
+        = link_to "詳細", hobby_room, class: "btn btn-primary"
+        = form_with( url: like_rooms_path, local: true ) do |f| 
+          = f.hidden_field :room_id, value: hobby_room.id
+          - if current_user.like_rooms.include?(LikeRoom.find_by(hobby_room_id: hobby_room.id, user_id: current_user.id))
+            = f.submit "いいね！#{hobby_room.like_rooms.count}", class: "btn btn-danger"
+          - else 
+            = f.submit "いいね！#{hobby_room.like_rooms.count}", class: "btn btn-default"
       %hr
       %br
       
+
