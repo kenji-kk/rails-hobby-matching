@@ -38,7 +38,10 @@
         = link_to "詳細", hobby_room, class: "btn btn-primary"
         = form_with( url: like_rooms_path, local: true ) do |f| 
           = f.hidden_field :room_id, value: hobby_room.id
-          = f.submit "いいね！#{hobby_room.like_rooms.count}", class: "btn btn-default"
+          - if current_user.like_rooms.include?(LikeRoom.find_by(hobby_room_id: hobby_room.id, user_id: current_user.id))
+            = f.submit "いいね！#{hobby_room.like_rooms.count}", class: "btn btn-danger"
+          - else 
+            = f.submit "いいね！#{hobby_room.like_rooms.count}", class: "btn btn-default"
       %hr
       %br
       

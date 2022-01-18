@@ -7,7 +7,8 @@ class LikeRoomsController < ApplicationController
         redirect_back(fallback_location: hobby_rooms_path)
       end
     else
-      flash[:danger] = 'すでに「いいね！」しています。'
+      LikeRoom.find_by(hobby_room_id: params[:room_id], user_id: current_user.id).delete
+      flash[:danger] = '投稿から「いいね！」を取り消しました。'
       redirect_back(fallback_location: hobby_rooms_path)
     end
   end
