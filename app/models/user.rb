@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
   has_many :hobby_rooms
-  has_many :hobby_room_users
+  has_many :hobby_room_users, dependent: :destroy
   has_many :join_rooms, through: :hobby_room_users, source: :hobby_room
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
@@ -11,7 +11,7 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
-  has_many :like_rooms
+  has_many :like_rooms, dependent: :destroy
   before_save   :downcase_email
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
