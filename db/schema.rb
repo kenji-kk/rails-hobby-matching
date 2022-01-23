@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_130625) do
+ActiveRecord::Schema.define(version: 2022_01_23_142304) do
+
+  create_table "entries", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_entries_on_room_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
 
   create_table "group_chats", force: :cascade do |t|
     t.integer "hobby_room_id", null: false
@@ -49,6 +58,16 @@ ActiveRecord::Schema.define(version: 2022_01_17_130625) do
     t.index ["user_id"], name: "index_like_rooms_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -65,6 +84,13 @@ ActiveRecord::Schema.define(version: 2022_01_17_130625) do
     t.index ["group_chat_id"], name: "index_replies_on_group_chat_id"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -75,11 +101,16 @@ ActiveRecord::Schema.define(version: 2022_01_17_130625) do
     t.string "remember_digest"
   end
 
+  add_foreign_key "entries", "rooms"
+  add_foreign_key "entries", "users"
   add_foreign_key "group_chats", "hobby_rooms"
   add_foreign_key "hobby_room_users", "hobby_rooms"
   add_foreign_key "hobby_room_users", "users"
   add_foreign_key "hobby_rooms", "users"
   add_foreign_key "like_rooms", "hobby_rooms"
   add_foreign_key "like_rooms", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "replies", "group_chats"
+  add_foreign_key "rooms", "users"
 end
