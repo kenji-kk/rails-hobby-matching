@@ -5,6 +5,7 @@
     %h1 マイページ
     = render 'shared/stats', user: @user
     = render 'shared/follow_form', user: @user if logged_in? 
+    = render 'shared/dm_button'
     %br
     %p= "ユーザ名：#{@user.name}"
     %p= "自己紹介：#{@user.bio}"
