@@ -1,0 +1,10 @@
+%br/
+- unless @user.id == current_user.id
+  - if @isRoom == true
+    %p.user-show-room
+      %a.btn.btn-info{:href => "/rooms/#{@roomId}"} チャットへ
+  - else
+    = form_for @room do |f|
+      = fields_for @entry do |e|
+        = e.hidden_field :user_id, value: @user.id
+      = f.submit "チャットを始める", class:"btn btn-info "
